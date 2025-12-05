@@ -3,12 +3,11 @@ name = "coursework-3-database"
 version = "0.1.0"
 description = ""
 authors = [
-    { name = "Your Name", email = "you@example.com" }
+    { name = "Zhigalkina Natalya", email = "story.hv@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "google-api-python-client (>=2.187.0,<3.0.0)"
 ]
 
 
