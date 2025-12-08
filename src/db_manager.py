@@ -10,11 +10,19 @@ class DBManager:
     Класс для взаимодействия с базой данных PostgreSQL.
     """
 
-    def __init__(self):
+    def __init__(self)-> None:
+        """
+       Инициализирует подключение к базе данных и создаёт курсор.
+       conn - объект соединения с базой данных.
+       cur - объект курсора для выполнения SQL-запросов.
+       """
         self.conn = psycopg.connect(**DB_CONFIG)
         self.cur = self.conn.cursor()
 
-    def close(self):
+    def close(self)-> None:
+        """
+        Закрывает курсор и соединение с базой данных.
+        """
         self.cur.close()
         self.conn.close()
 
@@ -32,7 +40,7 @@ class DBManager:
         )
         return self.cur.fetchall()
 
-    def get_all_vacancies(self) -> List[Tuple[str, str, float, float, str]]:
+    def get_all_vacancies(self) -> List[Tuple[str, str, float, float, str, str]]:
         """
         Возвращает список всех вакансий с информацией (указанием компании, должности, зарплаты, валюты и ссылки).
         """
@@ -59,7 +67,7 @@ class DBManager:
         avg_salary = result[0]
         return avg_salary
 
-    def get_vacancies_with_higher_salary(self) -> List[Tuple[str, str, float, float, str]]:
+    def get_vacancies_with_higher_salary(self) -> List[Tuple[str, str, float, float, str, str]]:
         """
         Возвращает вакансии, у которых средняя зарплата выше средней по всем вакансиям.
         """
@@ -78,7 +86,7 @@ class DBManager:
 
         return self.cur.fetchall()
 
-    def get_vacancies_with_keyword(self, keyword: str) -> List[Tuple[str, str, float, float, str]]:
+    def get_vacancies_with_keyword(self, keyword: str) -> List[Tuple[str, str, float, float, str, str]]:
         """
         Возвращает вакансии, в названии которых есть ключевое слово.
         """
